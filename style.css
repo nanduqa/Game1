@@ -1,0 +1,209 @@
+:root {
+  --bg-start: #130f40;
+  --bg-end: #2c3eaf;
+  --panel-bg: rgba(10, 10, 28, 0.72);
+  --accent: #4ce0ff;
+  --accent-2: #ff7ad9;
+  --text: #f5f7ff;
+  --muted: #aab5ff;
+  --success: #55ff8b;
+  --fail: #ff6b8a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(circle at 20% 20%, #2f2a84, #0d0b24 70%);
+  color: var(--text);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.app-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#gameCanvas {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  filter: drop-shadow(0 0 18px rgba(76, 224, 255, 0.2));
+}
+
+.screen,
+.panel,
+.hud {
+  position: absolute;
+  z-index: 10;
+}
+
+.center-screen {
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  gap: 1rem;
+  background: linear-gradient(to bottom, rgba(13, 11, 36, 0.3), rgba(13, 11, 36, 0.85));
+  backdrop-filter: blur(4px);
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: Fredoka, Inter, sans-serif;
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+  font-size: clamp(2.4rem, 5vw, 4.3rem);
+  letter-spacing: 0.04em;
+}
+
+.primary-btn,
+.action-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(135deg, var(--accent), #5a8dff);
+  color: #0d133f;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  box-shadow: 0 12px 28px rgba(76, 224, 255, 0.35);
+}
+
+.primary-btn:hover,
+.action-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.hud {
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+.hud-chip {
+  flex: 1;
+  min-width: 140px;
+  background: rgba(7, 8, 26, 0.6);
+  border: 1px solid rgba(130, 153, 255, 0.35);
+  border-radius: 14px;
+  padding: 0.55rem 0.75rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.hud-chip span {
+  font-size: 0.73rem;
+  color: var(--muted);
+  display: block;
+}
+
+.panel {
+  left: 1.2rem;
+  bottom: 1.2rem;
+  width: min(460px, calc(100vw - 2.4rem));
+  padding: 1rem 1.1rem;
+  border-radius: 18px;
+  background: var(--panel-bg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.35);
+}
+
+.panel p {
+  color: #dce3ff;
+  margin: 0.35rem 0;
+}
+
+.controls {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.6rem;
+}
+
+.control {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 0.55rem;
+}
+
+.control label {
+  font-size: 0.83rem;
+  color: #d5dcff;
+}
+
+.control .value {
+  float: right;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.control input[type='range'] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.actions {
+  margin-top: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.feedback {
+  min-height: 1.2rem;
+  margin-top: 0.7rem;
+  font-weight: 700;
+}
+
+.feedback.success {
+  color: var(--success);
+}
+
+.feedback.fail {
+  color: var(--fail);
+}
+
+.choice-btn {
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+}
+
+.choice-btn.selected {
+  background: linear-gradient(135deg, rgba(76, 224, 255, 0.35), rgba(255, 122, 217, 0.35));
+  border-color: rgba(76, 224, 255, 0.75);
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 880px) {
+  .hud {
+    flex-wrap: wrap;
+    top: 0.5rem;
+  }
+
+  .panel {
+    bottom: 0.5rem;
+    left: 0.5rem;
+    right: 0.5rem;
+    width: auto;
+  }
+}
