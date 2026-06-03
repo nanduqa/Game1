@@ -47,7 +47,8 @@ export class UI {
     for (const c of activity.controls || []) {
       const wrapper = document.createElement('div');
       wrapper.className = 'control';
-      const valueText = Number(values[c.key]).toFixed(c.step < 1 ? 2 : 0);
+      const decimals = String(c.step).includes('.') ? String(c.step).split('.')[1].length : 0;
+      const valueText = Number(values[c.key]).toFixed(decimals);
       wrapper.innerHTML = `<label>${c.label}<span class="value">${valueText}</span></label>`;
       const input = document.createElement('input');
       input.type = 'range';

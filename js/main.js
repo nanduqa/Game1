@@ -20,6 +20,8 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const particles = new ParticleSystem();
 
+const SIMULATION_AUTO_RESET_SECONDS = 6;
+
 const game = {
   running: false,
   levelIndex: 0,
@@ -63,7 +65,8 @@ function getActivity() {
 }
 
 function deepCopy(obj) {
-  return JSON.parse(JSON.stringify(obj));
+  if (typeof structuredClone === 'function') return structuredClone(obj);
+  return { ...obj };
 }
 
 function startGame() {
@@ -197,7 +200,7 @@ function update(dt) {
   if (levelKey === 'buoyancy') stepBuoyancy(game.sim, dt);
   if (levelKey === 'friction') stepFriction(game.sim, dt);
 
-  if (game.elapsed > 6) {
+  if (game.elapsed > SIMULATION_AUTO_RESET_SECONDS) {
     resetSimulation();
     game.elapsed = 0;
   }

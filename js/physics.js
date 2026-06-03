@@ -84,9 +84,6 @@ export function stepFriction(state, dt) {
   state.normalForce = normal;
 }
 
-export function periodicError(actual, target) {
-  return Math.abs(actual - target) / Math.max(target, 0.001);
-}
 
 export function starsFromError(error) {
   if (error <= 0.05) return 3;
